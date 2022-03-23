@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { useAddContactMutation, useGetContactQuery } from '../services/contactsApi'
+import { useAddContactMutation, useGetContactQuery, useUpdateContactMutation } from '../services/contactsApi'
 
 const initialState = {
   name: "",
@@ -15,6 +15,8 @@ const AddEdit = () => {
   const [editMode, setEditMode] = useState(false)
 
   const [addContact] = useAddContactMutation()
+  const [updateContact] =  useUpdateContactMutation()
+     
 
   const { name, email, contact } = formValue
 
@@ -55,10 +57,19 @@ const AddEdit = () => {
     if (!name && !email && !contact) {
       toast.error("Please fill all fields")
     } else {
-      let data = await addContact(formValue)
-      if (data) {
-        navigate('/')
-        toast.success("Contact added successfully")
+      if (!editMode) {
+         let data = await addContact(formValue)
+          if (data) {
+            navigate('/')
+            toast.success("Contact added successfully")
+          }
+      } else {
+        let data = await updateContact(formValue)
+        if (data) {
+          navigate('/')
+          setEditMode(false)
+            toast.success("Contact updated successfully")
+          }
       }
     }
   }
@@ -102,7 +113,7 @@ const AddEdit = () => {
           value={contact}
           onChange={handleInput}
         />
-        <input type="submit" value="Add" />
+        <input type="submit" value={editMode ? "Update" : "Add"} />
     </form>
     </div>
   )
