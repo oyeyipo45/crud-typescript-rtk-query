@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { useAddContactMutation } from '../services/contactsApi'
+import { useAddContactMutation, useGetContactQuery } from '../services/contactsApi'
 
 const initialState = {
   name: "",
@@ -9,15 +9,45 @@ const initialState = {
   contact: ""
 }
 const AddEdit = () => {
+  
   const navigate = useNavigate()
-  const [formValue, setformValue] = useState(initialState)
+  const [formValue, setFormValue] = useState(initialState)
+  const [editMode, setEditMode] = useState(false)
+
   const [addContact] = useAddContactMutation()
 
   const { name, email, contact } = formValue
 
+  const { id } = useParams()
+
+  const { data, error } = useGetContactQuery(id!)
+
+  useEffect(() => {
+    if(error && id) {
+        toast.error("Something went wrong")
+      }
+  }, [error])
+  
+  console.log(data)
+
+  useEffect(() => {
+    
+    if (id) {
+      setEditMode(true)
+      if (data) {
+        setFormValue({...data})
+      }
+      
+    } else {
+      setEditMode(false)
+      setFormValue({...initialState})
+    }
+  }, [id, data])
+
+
   const handleInput = (e: any) => {
     let { name, value } = e.target;
-    setformValue(({ ...formValue, [name] : value}))
+    setFormValue(({ ...formValue, [name] : value}))
   }
 
   const handleSubmit = async (e: any) => {
