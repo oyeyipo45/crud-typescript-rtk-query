@@ -51,3 +51,23 @@ export const {
     useGetContactQuery,
     useUpdateContactMutation
 } = contactsApi
+
+// export const apiSlice = createApi({
+//   reducerPath: "api",
+//   baseQuery: fetchBaseQuery({
+//     baseUrl: "https://backend-7p6wplabhq-uc.a.run.app/api",
+//     // prepareHeaders: (headers: Headers) => {
+//     //   const { data: session, status } = useSession();
+//     //   const token = session.user.token;
+//     //   if (token) {
+//     //     headers.set("authorization", `Bearer ${token}`);
+//     //   }
+//     //   return headers;
+//     // },
+//   }),
+//   endpoints: (builder) => ({
+//     getClients: builder.query<any, void>({
+//       query: () => "/clients",
+//     }),
+//   }),
+// });
