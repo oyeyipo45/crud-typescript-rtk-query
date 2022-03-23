@@ -1,0 +1,25 @@
+import React from 'react';
+import logo from './logo.svg';
+import {Routes, BrowserRouter, Route} from 'react-router-dom'
+import Home from './pages/Home';
+import AddEdit from './pages/AddEdit';
+import Info from './pages/Info';
+// import './App.css';
+ 
+function App() {
+  return (
+    <div>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/addContact' element={<AddEdit />} />
+          <Route path='/editContact/:id' element={<AddEdit /> }/>
+          <Route path='/info' element={<Info /> }/>
+        </Routes>
+
+      </BrowserRouter>
+    </div>
+  );
+}
+
+export default App;
