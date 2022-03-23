@@ -1,18 +1,16 @@
 {
-    "contacts" : [
-       { "name" : "Damilola Oyeyipo",
-        "email" : "adam45@gmail.com",
-        "contact" : "3434343434343",
-        "id" : 1
+  "contacts": [
+    {
+      "name": "Damilola Oyeyipo",
+      "email": "adam45@gmail.com",
+      "contact": "3434343434343",
+      "id": 1
     },
-    { "name": "gbemi Oyeyipo", 
-        "email": "89585545@gmail.com",
-        "contact": "3434343434343", "id": 2 
-    },
-    { "name": "funmu Oyeyipo",
-        "email": "23333@gmail.com", "contact": "222222222", 
-        "id": 3 
+    {
+      "name": "gbemi Oyeyipo",
+      "email": "89585545@gmail.com",
+      "contact": "3434343434343",
+      "id": 2
     }
-        
-    ]
+  ]
 }
